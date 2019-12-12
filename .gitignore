@@ -1,6 +1,15 @@
 
+# Generated files
 bin/
+gen/
 out/
-.DS_Store
+mock/
+venv/
+venv2/
+**/.DS_Store
 
+# vscode config files
+.vscode/settings.json
+
+# script files
 script/self/
