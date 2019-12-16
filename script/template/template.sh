@@ -2,6 +2,6 @@
 
 ########## xxx ##########
 
-echo -e "\n xxx"
+echo -e "\n=> 测试 xxx:"
 
 
