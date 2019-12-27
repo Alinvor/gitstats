@@ -1,11 +1,17 @@
 # -*- coding:utf-8 -*-
 
 import sys
+from ..configure.constant import _init
 
 
 class Sniff(object):
     ''' the sniff '''
-    pass
+    def __init__(self):
+        super(Sniff, self).__init__()
+
+    def initialized(self):
+        ''' the initialized default dict'''
+        _init()
 
 
 class WatchDog(object):
@@ -22,3 +28,6 @@ class WatchDog(object):
 
 # the single watchdog
 watchDog = WatchDog()
+
+# the default sniff
+sniff = Sniff()
