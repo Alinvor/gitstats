@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 
 import sys
-from ..configure.constant import _init
+from com.dvsnier.configure.constant import _init
 
 
 class Sniff(object):

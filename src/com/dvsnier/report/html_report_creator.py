@@ -5,18 +5,18 @@ import glob
 import os
 import shutil
 import time
-from .report_creator import ReportCreator
-from ..configure.config import conf
-from ..configure.constant import WEEKDAYS
-from ..configure.constant import GNUPLOT_COMMON
-from ..configure.constant import get_gnuplot_cmd
-from ..process.process import getpipeoutput
-from ..tools.git_tool import getversion
-from ..tools.git_tool import getgitversion
-from ..tools.git_tool import getgnuplotversion
-from ..tools.git_tool import getkeyssortedbyvalues
-from ..tools.git_tool import getkeyssortedbyvaluekey
-from ..tools.html_tool import html_header
+from com.dvsnier.report.report_creator import ReportCreator
+from com.dvsnier.configure.config import conf
+from com.dvsnier.configure.constant import WEEKDAYS
+from com.dvsnier.configure.constant import GNUPLOT_COMMON
+from com.dvsnier.configure.constant import get_gnuplot_cmd
+from com.dvsnier.process.process import getpipeoutput
+from com.dvsnier.tools.git_tool import getversion
+from com.dvsnier.tools.git_tool import getgitversion
+from com.dvsnier.tools.git_tool import getkeyssortedbyvalues
+from com.dvsnier.tools.git_tool import getkeyssortedbyvaluekey
+from com.dvsnier.tools.gnuplot_tool import getgnuplotversion
+from com.dvsnier.tools.html_tool import html_header
 
 
 class HTMLReportCreator(ReportCreator):

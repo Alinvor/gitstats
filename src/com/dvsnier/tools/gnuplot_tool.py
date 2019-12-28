@@ -1,8 +1,14 @@
 # -*- coding:utf-8 -*-
 
-from ..process.process import getpipeoutput
-from ..configure.constant import get_gnuplot_cmd
+from com.dvsnier.process.process import getpipeoutput
+from com.dvsnier.configure.constant import get_gnuplot_cmd
+
+gnuplot_version = ''
 
 
 def getgnuplotversion():
-    return getpipeoutput(['%s --version' % get_gnuplot_cmd]).split('\n')[0]
+    ''' the get gnuplot version '''
+    global gnuplot_version
+    gnuplot_version = getpipeoutput(['%s --version' % get_gnuplot_cmd()])
+    print("the current gnuplot version is %s." % gnuplot_version)
+    return gnuplot_version.split('\n')[0]

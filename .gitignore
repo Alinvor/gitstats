@@ -13,3 +13,6 @@ venv2/
 
 # script files
 script/self/
+
+# Python Jedi
+*.pyc

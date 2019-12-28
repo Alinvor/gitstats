@@ -4,8 +4,8 @@ import os
 import subprocess
 import sys
 import time
-from ..configure.constant import ON_LINUX
-from ..configure.constant import set_exectime_external
+from com.dvsnier.configure.constant import ON_LINUX
+from com.dvsnier.configure.constant import set_exectime_external
 
 
 def getpipeoutput(cmds, quiet=False):

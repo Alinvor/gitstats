@@ -3,15 +3,15 @@
 import datetime
 import re
 from multiprocessing import Pool
-from .data_collector import DataCollector
-from ..configure.config import conf
-from ..process.process import getpipeoutput
-from ..tools.git_tool import getlogrange
-from ..tools.git_tool import getnumoflinesinblob
-from ..tools.git_tool import getstatsummarycounts
-from ..tools.git_tool import getnumoffilesfromrev
-from ..tools.git_tool import getcommitrange
-from ..tools.git_tool import getkeyssortedbyvaluekey
+from com.dvsnier.collector.data_collector import DataCollector
+from com.dvsnier.configure.config import conf
+from com.dvsnier.process.process import getpipeoutput
+from com.dvsnier.tools.git_tool import getlogrange
+from com.dvsnier.tools.git_tool import getnumoflinesinblob
+from com.dvsnier.tools.git_tool import getstatsummarycounts
+from com.dvsnier.tools.git_tool import getnumoffilesfromrev
+from com.dvsnier.tools.git_tool import getcommitrange
+from com.dvsnier.tools.git_tool import getkeyssortedbyvaluekey
 
 
 class GitDataCollector(DataCollector):

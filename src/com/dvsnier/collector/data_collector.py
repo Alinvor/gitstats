@@ -5,7 +5,7 @@ import os
 import pickle
 import time
 import zlib
-from ..configure.config import conf
+from com.dvsnier.configure.config import conf
 
 
 class DataCollector:

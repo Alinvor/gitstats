@@ -2,8 +2,8 @@
 
 import os
 import re
-from ..process.process import getpipeoutput
-from ..configure.config import conf
+from com.dvsnier.process.process import getpipeoutput
+from com.dvsnier.configure.config import conf
 
 
 def getgitversion():

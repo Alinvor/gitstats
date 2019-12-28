@@ -4,12 +4,12 @@ import getopt
 import os
 import sys
 import time
-from ..collector.git_data_collector import GitDataCollector
-from ..configure.config import conf
-from ..configure.constant import get_time_start
-from ..configure.constant import get_exectime_external
-from .gnuplot_tool import getgnuplotversion
-from ..report.html_report_creator import HTMLReportCreator
+from com.dvsnier.collector.git_data_collector import GitDataCollector
+from com.dvsnier.configure.config import conf
+from com.dvsnier.configure.constant import get_time_start
+from com.dvsnier.configure.constant import get_exectime_external
+from com.dvsnier.tools.gnuplot_tool import getgnuplotversion
+from com.dvsnier.report.html_report_creator import HTMLReportCreator
 
 
 class GitStats:
@@ -47,7 +47,7 @@ class GitStats:
             print 'gnuplot not found'
             sys.exit(1)
 
-        print 'Output path: %s' % outputpath
+        print 'the current Output path: %s' % outputpath
         cachefile = os.path.join(outputpath, 'gitstats.cache')
 
         data = GitDataCollector()
