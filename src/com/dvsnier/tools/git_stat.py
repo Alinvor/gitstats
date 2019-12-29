@@ -8,11 +8,15 @@ from com.dvsnier.collector.git_data_collector import GitDataCollector
 from com.dvsnier.configure.config import conf
 from com.dvsnier.configure.constant import get_time_start
 from com.dvsnier.configure.constant import get_exectime_external
+from com.dvsnier.debug.log_debug import log
 from com.dvsnier.tools.gnuplot_tool import getgnuplotversion
 from com.dvsnier.report.html_report_creator import HTMLReportCreator
 
 
-class GitStats:
+class GitStats(object):
+    def __init__(self):
+        super(GitStats, self).__init__()
+
     def run(self, args_orig):
         optlist, args = getopt.getopt(args_orig, 'hc:e:', ["help"])
         for o, v in optlist:
@@ -47,7 +51,7 @@ class GitStats:
             print 'gnuplot not found'
             sys.exit(1)
 
-        print 'the current Output path: %s' % outputpath
+        log.tips(msg='the current Output path: %s' % outputpath)
         cachefile = os.path.join(outputpath, 'gitstats.cache')
 
         data = GitDataCollector()

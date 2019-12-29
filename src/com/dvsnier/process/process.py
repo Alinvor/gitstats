@@ -6,6 +6,7 @@ import sys
 import time
 from com.dvsnier.configure.constant import ON_LINUX
 from com.dvsnier.configure.constant import set_exectime_external
+from com.dvsnier.debug.log_debug import log
 
 
 def getpipeoutput(cmds, quiet=False):
@@ -16,6 +17,8 @@ def getpipeoutput(cmds, quiet=False):
     if not quiet and ON_LINUX and os.isatty(1):
         print '>> ' + ' | '.join(cmds),
         sys.stdout.flush()
+
+    log.log("the current execute commands: %s" % cmds)
     p = subprocess.Popen(cmds[0], stdout=subprocess.PIPE, shell=True)
     processes = [p]
     for x in cmds[1:]:
