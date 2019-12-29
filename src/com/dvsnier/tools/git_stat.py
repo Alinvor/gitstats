@@ -54,6 +54,8 @@ class GitStats(object):
         log.tips(msg='the current Output path: %s' % outputpath)
         cachefile = os.path.join(outputpath, 'gitstats.cache')
 
+        log.exit()
+
         data = GitDataCollector()
         data.loadCache(cachefile)
 

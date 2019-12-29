@@ -3,7 +3,8 @@
 bin/
 gen/
 out/
-mock/
+# mock/
+test/
 venv/
 venv2/
 **/.DS_Store
