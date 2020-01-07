@@ -14,7 +14,7 @@ from com.dvsnier.tools.git_tool import getcommitrange
 from com.dvsnier.tools.git_tool import getkeyssortedbyvaluekey
 
 
-class GitDataCollector(DataCollector):
+class GitDataCollector(DataCollector, object):
     def collect(self, dir):
         DataCollector.collect(self, dir)
 

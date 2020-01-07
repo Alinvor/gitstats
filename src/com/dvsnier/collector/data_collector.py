@@ -8,7 +8,7 @@ import zlib
 from com.dvsnier.configure.config import conf
 
 
-class DataCollector:
+class DataCollector(object):
     """Manages data collection from a revision control repository."""
     def __init__(self):
         self.stamp_created = time.time()

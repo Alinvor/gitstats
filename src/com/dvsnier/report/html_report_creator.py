@@ -19,7 +19,7 @@ from com.dvsnier.tools.gnuplot_tool import getgnuplotversion
 from com.dvsnier.tools.html_tool import html_header
 
 
-class HTMLReportCreator(ReportCreator):
+class HTMLReportCreator(ReportCreator, object):
     def create(self, data, path):
         ReportCreator.create(self, data, path)
         self.title = data.projectname
