@@ -4,7 +4,7 @@
 _sys_argvs = []
 
 sys_argv_0 = [
-    '-c', 'start_date=2019-12-01', '-e', 'expiry_date=2019-12-02',
+    '-c', 'start_date=2019-12-26', '-e', 'expiry_date=2020-01-30',
     '../gitstats', './out/gitstats'
 ]
 
