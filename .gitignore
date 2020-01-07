@@ -8,6 +8,7 @@ test/
 venv/
 venv2/
 **/.DS_Store
+log/
 *.log
 
 # vscode config files
