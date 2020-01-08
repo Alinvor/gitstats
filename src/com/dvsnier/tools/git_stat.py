@@ -41,48 +41,59 @@ class GitStats(object):
 
         try:
             os.makedirs(outputpath)
-        except OSError:
-            pass
+        except OSError as e:
+            if e.message:
+                log.output(e.message)
+            else:
+                log.output(e)
         if not os.path.isdir(outputpath):
             print 'FATAL: Output path is not a directory or does not exist'
+            log.output(
+                msg='FATAL: Output path is not a directory or does not exist')
             sys.exit(1)
 
         if not getgnuplotversion():
             print 'gnuplot not found'
+            log.output(msg='gnuplot not found')
             sys.exit(1)
 
-        log.tips(msg='the current Output path: %s' % outputpath)
+        log.output(msg='the current Output path: %s' % outputpath)
         cachefile = os.path.join(outputpath, 'gitstats.cache')
-
+        log.output(msg='the current cache file path is %s' % cachefile)
+        if os.path.exists(cachefile):
+            log.output(msg='the current cache file is existence')
+        else:
+            log.output(msg='the current cache file is not existence')
         data = GitDataCollector()
         data.loadCache(cachefile)
 
         for gitpath in args[0:-1]:
-            print 'Git path: %s' % gitpath
+            log.output('Git path: %s' % gitpath)
 
             prevdir = os.getcwd()
             os.chdir(gitpath)
 
-            print 'Collecting data...'
+            log.output('Collecting data...')
             data.collect(gitpath)
 
             os.chdir(prevdir)
 
-        print 'Refining data...'
+        log.output(msg='Refining data...')
         data.saveCache(cachefile)
         data.refine()
 
         os.chdir(rundir)
 
-        print 'Generating report...'
+        log.output(msg='Generating report...')
         report = HTMLReportCreator()
         report.create(data, outputpath)
 
         time_end = time.time()
         exectime_internal = time_end - get_time_start()
-        print 'Execution time %.5f secs, %.5f secs (%.2f %%) in external commands)' % (
+        msg = 'Execution time %.5f secs, %.5f secs (%.2f %%) in external commands)' % (
             exectime_internal, get_exectime_external(),
             (100.0 * get_exectime_external()) / exectime_internal)
+        log.output(msg=msg)
         if sys.stdin.isatty():
             print 'You may now run:'
             print

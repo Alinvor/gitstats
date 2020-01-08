@@ -6,6 +6,7 @@ import pickle
 import time
 import zlib
 from com.dvsnier.configure.config import conf
+from com.dvsnier.debug.log_debug import log
 
 
 class DataCollector(object):
@@ -91,11 +92,12 @@ class DataCollector(object):
     def loadCache(self, cachefile):
         if not os.path.exists(cachefile):
             return
-        print 'Loading cache...'
+        log.output(msg='Loading cache...')
         f = open(cachefile, 'rb')
         try:
             self.cache = pickle.loads(zlib.decompress(f.read()))
-        except Exception:
+        except Exception as e:
+            log.output(msg=e.message)
             # temporary hack to upgrade non-compressed caches
             f.seek(0)
             self.cache = pickle.load(f)
