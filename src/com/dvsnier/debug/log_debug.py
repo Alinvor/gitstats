@@ -3,6 +3,7 @@
 import os
 import datetime
 from com.dvsnier.debug.debug import Debug
+from com.dvsnier.configure.config import config
 
 
 class Log(Debug, object):
@@ -75,6 +76,16 @@ class Log(Debug, object):
             except OSError:
                 pass
         self.withOpen(log_dir, file_name, msg, ignore=ignore)
+
+    def writeToTempDir(self, msg, mode="a+", flag=0, ignore=True):
+        self.writeToDir(file_name=config.get_temp(),
+                        msg=msg,
+                        mode=mode,
+                        baseDir=config.get_current_log_output_path(),
+                        subDir=config.get_current_task_name(),
+                        flag=flag,
+                        ignore=ignore,
+                        relative=False)
 
     def writeToDir(self,
                    file_name,

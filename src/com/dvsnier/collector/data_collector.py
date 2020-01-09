@@ -91,6 +91,8 @@ class DataCollector(object):
     # Load cacheable data
     def loadCache(self, cachefile):
         if not os.path.exists(cachefile):
+            log.output(msg='the current cache file(%s) is not existences \
+                that is not load the disk cache.' % os.path.abspath(cachefile))
             return
         log.output(msg='Loading cache...')
         f = open(cachefile, 'rb')

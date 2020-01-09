@@ -5,6 +5,7 @@ import re
 from multiprocessing import Pool
 from com.dvsnier.collector.data_collector import DataCollector
 from com.dvsnier.configure.config import conf
+from com.dvsnier.debug.log_debug import log
 from com.dvsnier.process.process import getpipeoutput
 from com.dvsnier.tools.git_tool import getlogrange
 from com.dvsnier.tools.git_tool import getnumoflinesinblob
@@ -24,6 +25,8 @@ class GitDataCollector(DataCollector, object):
 
         # tags
         lines = getpipeoutput(['git show-ref --tags']).split('\n')
+        # log.writeToTempDir(msg=('the current lines is %s.' % lines),
+        #                    ignore=False)
         for line in lines:
             if len(line) == 0:
                 continue

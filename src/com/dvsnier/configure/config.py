@@ -18,6 +18,9 @@ conf = {
 # the default log directory
 _LOG_DIRECTORY = "log"
 
+# the temporary files
+_temporary = "temp"
+
 
 class Config(object):
     ''' the global config data '''
@@ -32,6 +35,8 @@ class Config(object):
     _current_run_path = None
     # the current cache path
     _current_cache_path = None
+    # the current task name with task pools
+    _current_task_name = None
 
     def __init__(self):
         super(Config, self).__init__()
@@ -76,10 +81,23 @@ class Config(object):
         ''' the get current cache path '''
         return self._current_cache_path
 
+    def set_current_task_name(self, task_name):
+        ''' the set current task name with task pools '''
+        self._current_task_name = task_name
+
+    def get_current_task_name(self):
+        ''' the get current task name with task pools '''
+        return self._current_task_name
+
     def get_log(self):
         ''' the get default log directory name '''
         global _LOG_DIRECTORY
         return _LOG_DIRECTORY
+
+    def get_temp(self):
+        ''' the get temporary directory name '''
+        global _temporary
+        return _temporary
 
 
 config = Config()

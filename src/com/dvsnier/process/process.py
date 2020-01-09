@@ -17,6 +17,12 @@ def getpipeoutput(cmds, quiet=False):
     start = time.time()
     file_name = log.obtain_time_stamp("log_%s.log", "%Y%m%d_%H%M%S_%f")
     task_name = log.obtain_time_stamp(style="task_%s", fmt="%m%d_%H%M")
+    if task_name != config.get_current_task_name():
+        if config.get_current_task_name():
+            log.output(msg="the current task name is now:[%s], old: [%s]" %
+                       (task_name, config.get_current_task_name()),
+                       ignore=False)
+        config.set_current_task_name(task_name=task_name)
     log.writeToDir(file_name,
                    msg="the current file name is %s" % file_name,
                    baseDir=config.get_current_log_output_path(),
@@ -58,11 +64,11 @@ def getpipeoutput(cmds, quiet=False):
     exectime_external += (end - start)
     set_exectime_external(exectime_external)
     content = output.rstrip('\n')
-    cmd_str = "the total time spent executing the current command({command}) is {cmd} s.\n"
+    cmd_str = "the total time spent executing the current command[{command}] is {cmd} s.\n"
     content_str = "the execution result is ['{content}']."
     log.writeToDir(file_name,
                    msg=(cmd_str + content_str).format(
-                       command=cmds,
+                       command=" ".join(cmds),
                        cmd=str(exectime_external),
                        content=content),
                    baseDir=config.get_current_log_output_path(),
