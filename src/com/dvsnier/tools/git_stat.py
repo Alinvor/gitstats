@@ -6,6 +6,7 @@ import sys
 import time
 from com.dvsnier.collector.git_data_collector import GitDataCollector
 from com.dvsnier.configure.config import conf
+from com.dvsnier.configure.config import config
 from com.dvsnier.configure.constant import get_time_start
 from com.dvsnier.configure.constant import get_exectime_external
 from com.dvsnier.debug.log_debug import log
@@ -35,10 +36,14 @@ class GitStats(object):
         if len(args) < 2:
             usage()
             sys.exit(0)
-
+        log.output(msg='Initialized data...')
         outputpath = os.path.abspath(args[-1])
         rundir = os.getcwd()
-
+        config.set_current_run_path(rundir)
+        log.output(msg='the current run path: %s' % rundir)
+        logdir = os.path.join(rundir, config.get_log())
+        config.set_current_log_output_path(logdir)
+        log.output(msg='the current log path: %s' % logdir)
         try:
             os.makedirs(outputpath)
         except OSError as e:
@@ -56,19 +61,25 @@ class GitStats(object):
             print 'gnuplot not found'
             log.output(msg='gnuplot not found')
             sys.exit(1)
-
+        config.set_output_path(outputpath)
         log.output(msg='the current Output path: %s' % outputpath)
         cachefile = os.path.join(outputpath, 'gitstats.cache')
+        config.set_current_cache_path(cachefile)
         log.output(msg='the current cache file path is %s' % cachefile)
         if os.path.exists(cachefile):
             log.output(msg='the current cache file is existence')
         else:
             log.output(msg='the current cache file is not existence')
+
         data = GitDataCollector()
         data.loadCache(cachefile)
 
         for gitpath in args[0:-1]:
-            log.output('Git path: %s' % gitpath)
+            abs_git_path = os.path.abspath(gitpath)
+            config.set_project_path(abs_git_path)
+            log.output('the current project(git) relative path is %s' %
+                       gitpath)
+            log.output('the current project(git) path is %s' % abs_git_path)
 
             prevdir = os.getcwd()
             os.chdir(gitpath)
