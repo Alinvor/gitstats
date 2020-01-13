@@ -21,6 +21,9 @@ _LOG_DIRECTORY = "log"
 # the temporary files
 _temporary = "temp"
 
+# the default current branch alias
+_refs_head_branch = 'HEAD'
+
 
 class Config(object):
     ''' the global config data '''
@@ -37,6 +40,10 @@ class Config(object):
     _current_cache_path = None
     # the current task name with task pools
     _current_task_name = None
+    # the default range is 'HEAD'
+    _default_range = ''
+    # the current branch name
+    _current_branch_name = None
 
     def __init__(self):
         super(Config, self).__init__()
@@ -98,6 +105,32 @@ class Config(object):
         ''' the get temporary directory name '''
         global _temporary
         return _temporary
+
+    def set_default_range(self, range):
+        ''' the set default range '''
+        if len(range) > 0:
+            self._default_range = range
+
+    def get_default_range(self):
+        ''' the get default range '''
+        if len(self._default_range) > 0:
+            return self._default_range
+        else:
+            return self.get_head_branch()
+
+    def get_head_branch(self):
+        ''' the get current branch '''
+        global _refs_head_branch
+        return _refs_head_branch
+
+    def set_current_branch_name(self, branch_name):
+        ''' the set current branch name '''
+        if len(branch_name) > 0:
+            self._current_branch_name = branch_name
+
+    def get_current_branch_name(self):
+        ''' the get current branch name '''
+        return self._current_branch_name
 
 
 config = Config()

@@ -49,8 +49,7 @@ class Test_Log(unittest.TestCase):
     def test_output(self):
         msg = "这是一个测试数据"
         print
-        log.output(msg, ignore=False)
-        # log.output(msg, ignore=True)
+        log.output(msg)
         log.tips("the test output() is succeed.")
 
     def test_write(self):
@@ -58,7 +57,7 @@ class Test_Log(unittest.TestCase):
         file_name = "test_with_open.log"
         msg = "这是一个测试数据,write"
         print
-        log.write(file_name, msg, ignore=False)
+        log.write(file_name, msg)
         # log.write(file_name, msg, ignore=True)
         log.tips("the test write() is succeed.")
 
@@ -78,7 +77,6 @@ class Test_Log(unittest.TestCase):
                        mode="a+",
                        baseDir=base_dir,
                        subDir=sub_dir,
-                       ignore=False,
                        relative=False)
         # log.writeToDir(
         #     file_name,
@@ -86,8 +84,6 @@ class Test_Log(unittest.TestCase):
         #     mode="a+",
         #     # baseDir=base_dir,
         #     subDir=sub_dir,
-        #     # ignore=True,
-        #     ignore=False,
         #     relative=False)
         log.tips("the test writeToDir() is succeed.")
 

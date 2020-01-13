@@ -8,6 +8,11 @@ _debug_mode = False
 
 class Debug(object):
     ''' debug '''
+
+    # mark whether to ignore the specified mode that is true
+    _ignore = True
+    _Flag = 0
+
     def __init__(self):
         super(Debug, self).__init__()
 
@@ -20,6 +25,22 @@ class Debug(object):
         ''' the set debug mode '''
         global _debug_mode
         _debug_mode = mode
+
+    def setIgnore(self, ignore):
+        ''' the get ignore value '''
+        self._ignore = ignore
+
+    def getIgnore(self):
+        ''' the get ignore value '''
+        return self._ignore
+
+    def setFlag(self, flag):
+        ''' the get flag value '''
+        self._Flag = flag
+
+    def getFlag(self):
+        ''' the get flag value '''
+        return self._Flag
 
     def exit(self):
         ''' the system exit '''

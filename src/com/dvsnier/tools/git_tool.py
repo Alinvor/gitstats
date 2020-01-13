@@ -4,6 +4,7 @@ import os
 import re
 from com.dvsnier.process.process import getpipeoutput
 from com.dvsnier.configure.config import conf
+from com.dvsnier.configure.config import config
 
 
 def getgitversion():
@@ -46,20 +47,34 @@ def getversion():
     return VERSION
 
 
-def getlogrange(defaultrange='HEAD', end_only=True):
+def getlogrange(defaultrange=config.get_default_range(), end_only=True, flag_only=True):
     ''' the get log range '''
-    commit_range = getcommitrange(defaultrange, end_only)
-    if len(conf['start_date']) > 0:
-        return '--since="%s" "%s"' % (conf['start_date'], commit_range)
+    if flag_only and defaultrange == config.get_head_branch():
+        if len(conf['expiry_date']) > 0:
+            commit_range = getexpiryrange(defaultrange, end_only)
+        else:
+            commit_range = getcommitrange(defaultrange, end_only)
+            if len(conf['start_date']) > 0:
+                return '--since="%s" "%s"' % (conf['start_date'], commit_range)
+    else:
+        commit_range = getexpiryrange(defaultrange, end_only)
     return commit_range
 
 
-def getcommitrange(defaultrange='HEAD', end_only=False):
+def getcommitrange(defaultrange=config.get_default_range(), end_only=False):
     ''' the get commit range '''
     if len(conf['commit_end']) > 0:
         if end_only or len(conf['commit_begin']) == 0:
             return conf['commit_end']
         return '%s..%s' % (conf['commit_begin'], conf['commit_end'])
+    return defaultrange
+
+
+def getexpiryrange(defaultrange=config.get_default_range(), end_only=False):
+    ''' the get expiry range '''
+    if len(conf['start_date']) > 0 and len(conf['expiry_date']) > 0:
+        return '--since="%s" --until="%s" "%s"' % (
+            conf['start_date'], conf['expiry_date'], config.get_head_branch())
     return defaultrange
 
 

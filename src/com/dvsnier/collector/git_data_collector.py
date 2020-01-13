@@ -13,6 +13,7 @@ from com.dvsnier.tools.git_tool import getstatsummarycounts
 from com.dvsnier.tools.git_tool import getnumoffilesfromrev
 from com.dvsnier.tools.git_tool import getcommitrange
 from com.dvsnier.tools.git_tool import getkeyssortedbyvaluekey
+from com.dvsnier.tools.tool_utils import dicts
 
 
 class GitDataCollector(DataCollector, object):
@@ -25,8 +26,7 @@ class GitDataCollector(DataCollector, object):
 
         # tags
         lines = getpipeoutput(['git show-ref --tags']).split('\n')
-        # log.writeToTempDir(msg=('the current lines is %s.' % lines),
-        #                    ignore=False)
+        # log.writeToTempDir(msg=('the current lines is %s.' % lines))
         for line in lines:
             if len(line) == 0:
                 continue
@@ -82,7 +82,8 @@ class GitDataCollector(DataCollector, object):
         # Outputs "<stamp> <date> <time> <timezone> <author> '<' <mail> '>'"
         lines = getpipeoutput([
             'git rev-list --pretty=format:"%%at %%ai %%aN <%%aE>" %s' %
-            getlogrange('HEAD'), 'grep -v ^commit'
+            getlogrange(defaultrange='HEAD', flag_only=False),
+            'grep -v ^commit'
         ]).split('\n')
         for line in lines:
             parts = line.split(' ', 4)
@@ -207,7 +208,8 @@ class GitDataCollector(DataCollector, object):
 
         # outputs "<stamp> <files>" for each revision
         revlines = getpipeoutput([
-            'git rev-list --pretty=format:"%%at %%T" %s' % getlogrange('HEAD'),
+            'git rev-list --pretty=format:"%%at %%T" %s' %
+            getlogrange(defaultrange='HEAD', flag_only=False),
             'grep -v ^commit'
         ]).strip().split('\n')
         lines = []
@@ -452,6 +454,10 @@ class GitDataCollector(DataCollector, object):
                 else:
                     print 'Warning: failed to handle line "%s"' % line
                     (files, inserted, deleted) = (0, 0, 0)
+        if log.isDebug():
+            self_dict = dicts(self)
+            msg = "the current self data is %s " % (self_dict)
+            log.writeToTempDir(msg=msg)
 
     def refine(self):
         # authors

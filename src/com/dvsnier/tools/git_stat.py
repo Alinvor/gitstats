@@ -29,6 +29,8 @@ class GitStats(object):
                     conf[key] = int(value)
                 else:
                     conf[key] = value
+                    if o == '-e':
+                        config.set_default_range(value)
             elif o in ('-h', '--help'):
                 usage()
                 sys.exit()

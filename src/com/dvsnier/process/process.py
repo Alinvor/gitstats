@@ -20,14 +20,12 @@ def getpipeoutput(cmds, quiet=False):
     if task_name != config.get_current_task_name():
         if config.get_current_task_name():
             log.output(msg="the current task name is now:[%s], old: [%s]" %
-                       (task_name, config.get_current_task_name()),
-                       ignore=False)
+                       (task_name, config.get_current_task_name()))
         config.set_current_task_name(task_name=task_name)
     log.writeToDir(file_name,
                    msg="the current file name is %s" % file_name,
                    baseDir=config.get_current_log_output_path(),
                    subDir=task_name,
-                   ignore=False,
                    relative=False)
     if not quiet and ON_LINUX and os.isatty(1):
         print '>> ' + ' | '.join(cmds),
@@ -37,7 +35,6 @@ def getpipeoutput(cmds, quiet=False):
                    msg="the current execute commands: %s" % cmds,
                    baseDir=config.get_current_log_output_path(),
                    subDir=task_name,
-                   ignore=False,
                    relative=False)
     p = subprocess.Popen(cmds[0], stdout=subprocess.PIPE, shell=True)
     processes = [p]
@@ -46,7 +43,6 @@ def getpipeoutput(cmds, quiet=False):
                        msg="the current execute sub commands: %s" % x,
                        baseDir=config.get_current_log_output_path(),
                        subDir=task_name,
-                       ignore=False,
                        relative=False)
         p = subprocess.Popen(x,
                              stdin=p.stdout,
@@ -73,6 +69,5 @@ def getpipeoutput(cmds, quiet=False):
                        content=content),
                    baseDir=config.get_current_log_output_path(),
                    subDir=task_name,
-                   ignore=False,
                    relative=False)
     return content

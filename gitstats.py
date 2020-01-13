@@ -10,9 +10,9 @@ sys.path.append(os.path.join(os.getcwd(), "src"))
 sys.path.append(os.path.join(os.getcwd(), "mock"))
 
 from com.dvsnier.debug.log_debug import log
-log.output(msg=("--- start ---"), ignore=False)
-log.output(msg=(sys.path), ignore=False)
-log.output(msg=("--- end ---"), ignore=False)
+log.output(msg=("--- start ---"))
+log.output(msg=(sys.path))
+log.output(msg=("--- end ---"))
 
 # namespace_packages=['dvsnier.gitstat']
 from com.dvsnier.tools.git_stat import GitStats
