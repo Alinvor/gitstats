@@ -93,6 +93,14 @@ class Log(Debug, Flag, object):
                 pass
         self.withOpen(log_dir, file_name, msg)
 
+    def writeToFile(self, file_name, msg, mode='a+'):
+        self.writeToDir(file_name=file_name,
+                        msg=msg,
+                        mode=mode,
+                        baseDir=config.get_current_log_output_path(),
+                        subDir=config.get_current_task_name(),
+                        relative=False)
+
     def writeToTempDir(self, msg, mode="a+"):
         self.writeToDir(file_name=config.get_temp(),
                         msg=msg,

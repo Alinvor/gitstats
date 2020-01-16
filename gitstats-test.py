@@ -89,7 +89,8 @@ def test_log_case():
 # the test case
 if __name__ == '__main__':
 
-    test_log_mode_1()
+    # test_log_mode_1()
+    test_log_mode_3()
 
     g = GitStats()
     sys_argvs = get_sys_argvs()

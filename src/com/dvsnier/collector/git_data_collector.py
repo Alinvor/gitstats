@@ -5,6 +5,7 @@ import re
 from multiprocessing import Pool
 from com.dvsnier.collector.data_collector import DataCollector
 from com.dvsnier.configure.config import conf
+from com.dvsnier.configure.config import config
 from com.dvsnier.debug.log_debug import log
 from com.dvsnier.process.process import getpipeoutput
 from com.dvsnier.tools.git_tool import getlogrange
@@ -454,10 +455,10 @@ class GitDataCollector(DataCollector, object):
                 else:
                     print 'Warning: failed to handle line "%s"' % line
                     (files, inserted, deleted) = (0, 0, 0)
-        if log.isDebug():
-            self_dict = dicts(self)
-            msg = "the current self data is %s " % (self_dict)
-            log.writeToTempDir(msg=msg)
+        self_dict = dicts(self)
+        # the current file .../log/task_xxx/git_meta_collector.log
+        # that change to *.py format address is ref http://www.jsons.cn/pythonformat/
+        log.writeToFile(file_name='git_meta_collector.log', msg=self_dict)
 
     def refine(self):
         # authors

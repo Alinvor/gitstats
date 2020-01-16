@@ -56,7 +56,9 @@ def getpipeoutput(cmds, quiet=False):
     if not quiet:
         if ON_LINUX and os.isatty(1):
             print '\r',
-        print '[%.5f] >> %s' % (end - start, ' | '.join(cmds))
+        msg = '[%.5f] >> %s' % (end - start, ' | '.join(cmds))
+        print msg
+        log.writeToFile(file_name='git_command_script.log', msg=msg)
     exectime_external += (end - start)
     set_exectime_external(exectime_external)
     content = output.rstrip('\n')
