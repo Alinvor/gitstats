@@ -4,7 +4,6 @@ bin/
 gen/
 out/
 mock/
-# test/
 venv/
 venv2/
 **/.DS_Store
@@ -12,7 +11,7 @@ log/
 *.log
 
 # vscode config files
-.vscode/settings.json
+.vscode/
 
 # script files
 script/self/
