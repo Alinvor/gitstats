@@ -9,15 +9,40 @@ gitstats
 
 ### venv2
 
+#### 1. venv2 for mac
+
 ```
 virtualenv -p /usr/local/bin/python2 --no-site-packages venv2
 ```
 
-## venv3
+#### 2. venv2 for windows
+
+```
+python2 -m virtualenv -p C:\Python\Python27\python2.exe venv2
+
+或
+
+python2 -m virtualenv -p C:\Python\Python27\python2.exe venv2 > venv2.log
+```
+
+### venv3
+
+#### 1. venv3 for mac
 
 ```
 virtualenv -p /usr/local/bin/python3 --no-site-packages venv
 ```
+
+#### 2. venv3 for windows
+
+```
+python3 -m virtualenv -p C:\Python\Python38\python3.exe venv
+
+或
+
+python3 -m virtualenv -p C:\Python\Python38\python3.exe venv > venv.log
+```
+
 
 ## 使用方式
 
