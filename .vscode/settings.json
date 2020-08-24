@@ -1,0 +1,53 @@
+{
+    "python.pythonPath": "venv2/bin/python",
+    "python.formatting.provider": "yapf",
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.linting.flake8Args": ["--max-line-length=250"],
+    "editor.tabSize": 4,
+    "editor.detectIndentation": false,
+    "debug.toolBarLocation": "docked",
+    "editor.suggestSelection": "first",
+    "editor.fontSize": 14,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.wordWrapColumn": 250,
+    "editor.columnSelection": false,
+    "editor.mouseWheelZoom": true,
+    "explorer.confirmDelete": false,
+    "editor.renderWhitespace": "all",
+    "editor.renderControlCharacters": true,
+    "editor.suggest.shareSuggestSelections": true,
+    "editor.renderIndentGuides": false,
+    "debug.console.fontSize": 14,
+    "git.autofetch": true,
+    "[json]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "terminal.integrated.fontSize": 14,
+    "markdown.extension.toc.githubCompatibility": true,
+    "markdownlint.config": {
+        "MD033": false
+    },
+    "markdown.extension.katex.macros": {},
+    "markdown.extension.toc.levels": "2..6",
+    "terminal.integrated.copyOnSelection": true,
+    // "files.autoSave": "afterDelay",
+    "files.insertFinalNewline": true,
+    "files.autoGuessEncoding": true,
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/*.pyc": true
+    },
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.editor.enablePreview": true,
+    "workbench.editor.enablePreviewFromQuickOpen": true,
+    "window.zoomLevel": 0,
+}
