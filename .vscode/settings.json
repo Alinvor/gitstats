@@ -6,7 +6,7 @@
     "python.linting.flake8Args": ["--max-line-length=250"],
     "editor.tabSize": 4,
     "editor.detectIndentation": false,
-    "debug.toolBarLocation": "docked",
+    // "debug.toolBarLocation": "docked",
     "editor.suggestSelection": "first",
     "editor.fontSize": 14,
     "editor.formatOnSave": true,
@@ -50,4 +50,16 @@
     "workbench.editor.enablePreview": true,
     "workbench.editor.enablePreviewFromQuickOpen": true,
     "window.zoomLevel": 0,
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        "./test",
+        "-p",
+        "test_*.py"
+    ],
+    "python.testing.autoTestDiscoverOnSaveEnabled": true,
+    "python.testing.cwd": "${workspaceFolder}",
+    "python.testing.nosetestsEnabled": false,
+    "python.testing.pytestEnabled": false,
+    "python.testing.unittestEnabled": true,
 }

@@ -15,6 +15,8 @@ class Flag(object):
 class Log(Debug, Flag, object):
     ''' the log debug '''
 
+    # the default log dir
+    _default_log_dir = None
     # the default log name
     _default_log_name = ""
     # the default turn off log output
@@ -83,15 +85,36 @@ class Log(Debug, Flag, object):
             return
         self.write(self.get_default_log_name(), msg)
 
+    def outputWithDir(self, log_dir, msg):
+        ''' the local logging service records '''
+        if self.isDebug() and self.getFlag() == self._DEFAULT_FLAG:
+            pass
+        else:
+            return
+        self.writeWithDir(log_dir, self.get_default_log_name(), msg)
+
     def write(self, file_name, msg):
         ''' the write data to files that use to append'''
-        log_dir = os.path.join(os.getcwd(), "log")
-        if not os.path.exists(log_dir):
+        if not self.get_default_log_dir() is None:
+            log_dirs = os.path.join(self.get_default_log_dir(), "log")
+        else:
+            log_dirs = os.path.join(os.getcwd(), "log")
+        if not os.path.exists(log_dirs):
             try:
-                os.makedirs(log_dir)
+                os.makedirs(log_dirs)
             except OSError:
                 pass
-        self.withOpen(log_dir, file_name, msg)
+        self.withOpen(log_dirs, file_name, msg)
+
+    def writeWithDir(self, log_dir, file_name, msg):
+        ''' the write data to files that use to append'''
+        log_dirs = os.path.join(log_dir, "log")
+        if not os.path.exists(log_dirs):
+            try:
+                os.makedirs(log_dirs)
+            except OSError:
+                pass
+        self.withOpen(log_dirs, file_name, msg)
 
     def writeToFile(self, file_name, msg, mode='a+'):
         self.writeToDir(file_name=file_name,
@@ -162,6 +185,14 @@ class Log(Debug, Flag, object):
         if style and style.find("%s") >= 0:
             return (style % datetime.datetime.now().strftime(fmt))
         return datetime.datetime.now().strftime(fmt)
+
+    def set_default_log_dir(self, log_dir):
+        ''' the set default log dir '''
+        self._default_log_dir = log_dir
+
+    def get_default_log_dir(self):
+        ''' the get default log dir '''
+        return self._default_log_dir
 
     def set_default_log_name(self, log_name):
         ''' the set default log name '''

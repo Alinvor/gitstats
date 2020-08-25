@@ -12,6 +12,7 @@ sys.path.append(os.path.join(os.getcwd(), "mock"))
 from com.dvsnier.debug.log_debug import log
 log.output(msg=("--- start ---"))
 log.output(msg=(sys.path))
+log.set_default_log_dir(os.getcwd())
 log.output(msg=("--- end ---"))
 
 # namespace_packages=['dvsnier.gitstat']

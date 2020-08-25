@@ -18,6 +18,7 @@ class Test_Log(unittest.TestCase):
     def setUpClass(cls):
         print("...the set up...")
         print
+        log.setFlag(log._DEFAULT_FLAG)
         log.setDebug(True)
 
     def test_tips(self):
@@ -49,7 +50,16 @@ class Test_Log(unittest.TestCase):
     def test_output(self):
         msg = "这是一个测试数据"
         print
+        log.set_default_log_dir(os.getcwd())
         log.output(msg)
+        log.tips("the test output() is succeed.")
+
+    def test_outputWithDir(self):
+        msg = "这是一个测试数据,test_outputWithDir"
+        print
+        current_work_dir = os.path.join(os.getcwd(), "log/test_log")
+        log.tips("the current cwd is %s" % current_work_dir)
+        log.outputWithDir(current_work_dir, msg)
         log.tips("the test output() is succeed.")
 
     def test_write(self):
@@ -117,4 +127,6 @@ class Test_Log(unittest.TestCase):
 
 
 if __name__ == '__main__':
+    # suite = unittest.TestLoader().loadTestsFromTestCase(Test_Log)
+    # unittest.TextTestRunner(verbosity=2).run(suite)
     unittest.main()
