@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 
 import sys
+import json
 
 # the mark debug mode
 _debug_mode = False
@@ -57,6 +58,12 @@ class Debug(object):
     def conditions(self, args):
         ''' detection condition, return identity to args '''
         return args
+
+    def printObject(self, obj):
+        ''' the print format object '''
+        if obj:
+            json_argv = json.dumps(obj, indent=4)
+            print(json_argv)
 
 
 debug = Debug()

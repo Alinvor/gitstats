@@ -1,9 +1,4 @@
 {
-    "python.pythonPath": "venv2/bin/python",
-    "python.formatting.provider": "yapf",
-    "python.linting.pylintEnabled": false,
-    "python.linting.flake8Enabled": true,
-    "python.linting.flake8Args": ["--max-line-length=250"],
     "editor.tabSize": 4,
     "editor.detectIndentation": false,
     // "debug.toolBarLocation": "docked",
@@ -30,7 +25,8 @@
     "terminal.integrated.fontSize": 14,
     "markdown.extension.toc.githubCompatibility": true,
     "markdownlint.config": {
-        "MD033": false
+        "MD033": false,
+        "MD034": false,
     },
     "markdown.extension.katex.macros": {},
     "markdown.extension.toc.levels": "2..6",
@@ -46,10 +42,23 @@
         "**/.DS_Store": true,
         "**/*.pyc": true
     },
-    "workbench.iconTheme": "vscode-icons",
-    "workbench.editor.enablePreview": true,
-    "workbench.editor.enablePreviewFromQuickOpen": true,
-    "window.zoomLevel": 0,
+    "python.analysis.logLevel": "Trace",
+    "python.analysis.watchSearchPaths": true,
+    "python.autoComplete.extraPaths": [
+        "./mock",
+        "./src",
+        "./test",
+        "./venv2/bin",
+        "./venv2/Lib/python2.7/site-packages",
+        // "./venv/bin",
+        // "./venv/Lib/python3.7/site-packages",
+    ],
+    "python.pythonPath": "venv2/bin/python",
+    "python.formatting.provider": "yapf",
+    "python.languageServer": "Microsoft",
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.linting.flake8Args": ["--max-line-length=250"],
     "python.testing.unittestArgs": [
         "-v",
         "-s",
@@ -62,4 +71,8 @@
     "python.testing.nosetestsEnabled": false,
     "python.testing.pytestEnabled": false,
     "python.testing.unittestEnabled": true,
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.editor.enablePreview": true,
+    "workbench.editor.enablePreviewFromQuickOpen": true,
+    "window.zoomLevel": 0,
 }

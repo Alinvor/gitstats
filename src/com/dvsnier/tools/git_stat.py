@@ -41,6 +41,7 @@ class GitStats(object):
         log.output(msg='Initialized data...')
         outputpath = os.path.abspath(args[-1])
         rundir = os.getcwd()
+        log.set_default_log_dir(rundir)
         config.set_current_run_path(rundir)
         log.output(msg='the current run path: %s' % rundir)
         logdir = os.path.join(rundir, config.get_log())
